@@ -19,11 +19,21 @@ namespace SrtTimeShift
             }
         }
 
-        public static void ShiftSrt(System.Collections.Generic.IEnumerable<SrtItem> srtItems, uint fromMilliseconds, int milliseconds)
+        public static void ShiftSrtAfterFrom(System.Collections.Generic.IEnumerable<SrtItem> srtItems, uint fromMilliseconds, int milliseconds)
         {
             foreach (var srtItem in srtItems)
             {
                 if (srtItem.From.TotalMilliseconds < fromMilliseconds) { continue; }
+                srtItem.Shift(milliseconds);
+            }
+        }
+
+
+        public static void ShiftSrtAfterNumber(System.Collections.Generic.IEnumerable<SrtItem> srtItems, uint number, int milliseconds)
+        {
+            foreach (var srtItem in srtItems)
+            {
+                if (srtItem.Number < number) { continue; }
                 srtItem.Shift(milliseconds);
             }
         }
