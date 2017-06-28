@@ -7,7 +7,7 @@ namespace SrtTimeShift
         public uint Number { get; set; }
         public TimeSpan From { get; internal set; }
         public TimeSpan To { get; internal set; }
-        public string Text { get; }
+        public string Text { get; set; }
 
         public SrtItem(uint number, TimeSpan from, TimeSpan to, string text)
         {

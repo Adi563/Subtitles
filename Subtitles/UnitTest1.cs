@@ -68,5 +68,36 @@ namespace SrtTimeShift
                 SrtHandler.WriteSrt(srtItemsFiltered, new System.IO.FileStream(string.Format(@"C:\Users\Adrian\Downloads\jack\CD5\Jack{0}.srt", g.Key), System.IO.FileMode.Create));
             }
         }
+
+        [TestMethod]
+        public void ReplacePointsWithCommas()
+        {
+            const string filePath = @"Z:\Shared\Videos\Samurai Jack\S03\S03E01 Chicken Jack.srt";
+            var srtItems = SrtHandler.ReadSrt(new System.IO.FileStream(filePath, System.IO.FileMode.Open));
+
+            srtItems.ToList().ForEach(s =>
+            {
+                if (!s.Text.Contains('.')) { return; }
+
+                var indexOfPoint = s.Text.IndexOf('.');
+
+                if (s.Text.Length < indexOfPoint + 2) { return; }
+
+                var indexOfFirstLetterOfNextSentence = s.Text[indexOfPoint + 1] == '\r' && (s.Text.Length > indexOfPoint + 3) ? indexOfPoint + 3 : indexOfPoint + 2;
+                var firstLetterOfNextSentence = s.Text[indexOfFirstLetterOfNextSentence];
+                if (!(firstLetterOfNextSentence >= 97 && firstLetterOfNextSentence <= 122)) { return; }
+                
+                var textFixed = s.Text.ToCharArray();
+                textFixed[indexOfPoint] = ',';
+                var stringFixed = new string(textFixed);
+
+                System.Diagnostics.Debug.WriteLine(s.Text);
+                System.Diagnostics.Debug.WriteLine(stringFixed);
+
+                s.Text = stringFixed;
+            });
+
+            SrtHandler.WriteSrt(srtItems, new System.IO.FileStream(filePath, System.IO.FileMode.Create));
+        }
     }
 }
