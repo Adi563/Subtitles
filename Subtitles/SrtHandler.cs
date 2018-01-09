@@ -11,6 +11,14 @@ namespace SrtTimeShift
             Text
         }
 
+        public static void ShiftSrt(System.Collections.Generic.IEnumerable<SrtItem> srtItems, decimal multiplicator, int milliseconds)
+        {
+            foreach (var srtItem in srtItems)
+            {
+                srtItem.Shift(multiplicator, milliseconds);
+            }
+        }
+
         public static void ShiftSrt(System.Collections.Generic.IEnumerable<SrtItem> srtItems, int milliseconds)
         {
             foreach (var srtItem in srtItems)

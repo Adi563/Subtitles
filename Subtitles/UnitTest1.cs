@@ -9,6 +9,15 @@ namespace SrtTimeShift
     public class UnitTest1
     {
         [TestMethod]
+        public void ShiftWithMultiplierSrt()
+        {
+            const string filePath = @"C:\Users\Adrian\Downloads\Temp\GOT\got-s06e01-1080p.eng.srt";
+            var srtItems = SrtHandler.ReadSrt(new System.IO.FileStream(filePath, System.IO.FileMode.Open));
+            SrtHandler.ShiftSrt(srtItems, 1.1m, 10000);
+            SrtHandler.WriteSrt(srtItems, new System.IO.FileStream(filePath, System.IO.FileMode.Create));
+        }
+
+        [TestMethod]
         public void ShiftSrt()
         {
             const string filePath = @"C:\Users\Adrian\Downloads\jack\CD5\S03E07 Jack and the Creature.srt";

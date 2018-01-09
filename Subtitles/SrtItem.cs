@@ -17,6 +17,12 @@ namespace SrtTimeShift
             Text = text;
         }
 
+        public void Shift(decimal multiplicator, int milliseconds)
+        {
+            From = new TimeSpan((long)(From.Ticks * multiplicator)) + new TimeSpan(0, 0, 0, 0, milliseconds);
+            To = new TimeSpan((long)(To.Ticks * multiplicator)) + new TimeSpan(0, 0, 0, 0, milliseconds);
+        }
+
         public void Shift(int milliseconds)
         {
             From = From.Add(new TimeSpan(0, 0, 0, 0, milliseconds));
