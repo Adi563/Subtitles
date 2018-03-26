@@ -11,9 +11,9 @@ namespace SrtTimeShift
         [TestMethod]
         public void ShiftWithMultiplierSrt()
         {
-            const string filePath = @"C:\Users\Adrian\Downloads\Temp\GOT\got-s06e01-1080p.eng.srt";
+            const string filePath = @"C:\Users\Adrian\Downloads\Temp\The Dark Crystal\The.Dark.Crystal.1982.1080p.BluRay.x264-[YTS.AM].en.srt";
             var srtItems = SrtHandler.ReadSrt(new System.IO.FileStream(filePath, System.IO.FileMode.Open));
-            SrtHandler.ShiftSrt(srtItems, 1.1m, 10000);
+            SrtHandler.ShiftSrt(srtItems, 25m/23.976024m, 0);
             SrtHandler.WriteSrt(srtItems, new System.IO.FileStream(filePath, System.IO.FileMode.Create));
         }
 
