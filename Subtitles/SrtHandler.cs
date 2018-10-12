@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace SrtTimeShift
+namespace Subtitles
 {
-    class SrtHandler
+    public class SrtHandler
     {
         private enum State
         {

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subtitles.Gui", "Subtitles.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subtitles.Test", "Subtitles.Test\Subtitles.Test.csproj", "{2ED0C253-F712-41F1-BF81-E8C0D04FDE03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subtitles", "Subtitles\Subtitles.csproj", "{8D10D000-C1E8-452B-A6A1-0EDED5317EBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2ED0C253-F712-41F1-BF81-E8C0D04FDE03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2ED0C253-F712-41F1-BF81-E8C0D04FDE03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2ED0C253-F712-41F1-BF81-E8C0D04FDE03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D10D000-C1E8-452B-A6A1-0EDED5317EBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D10D000-C1E8-452B-A6A1-0EDED5317EBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D10D000-C1E8-452B-A6A1-0EDED5317EBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D10D000-C1E8-452B-A6A1-0EDED5317EBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

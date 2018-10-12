@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace SrtTimeShift
+namespace Subtitles
 {
-    class SrtItem
+    public class SrtItem
     {
         public uint Number { get; set; }
         public TimeSpan From { get; internal set; }

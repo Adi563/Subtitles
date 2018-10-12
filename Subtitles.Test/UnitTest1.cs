@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace SrtTimeShift
+namespace Subtitles.Test
 {
     using System.Linq;
 
