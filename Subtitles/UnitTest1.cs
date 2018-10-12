@@ -11,31 +11,30 @@ namespace SrtTimeShift
         [TestMethod]
         public void ShiftWithMultiplierSrt()
         {
-            const string filePath = @"C:\Users\Adrian\Downloads\Temp\The Dark Crystal\The.Dark.Crystal.1982.1080p.BluRay.x264-[YTS.AM].en.srt";
+            const string filePath = @"C:\Users\Adrian\Downloads\The Last Unicorn 1080p.srt";
             var srtItems = SrtHandler.ReadSrt(new System.IO.FileStream(filePath, System.IO.FileMode.Open));
-            SrtHandler.ShiftSrt(srtItems, 25m/23.976024m, 0);
+            SrtHandler.ShiftSrt(srtItems, 23.976024m/24.000384m, 0);
             SrtHandler.WriteSrt(srtItems, new System.IO.FileStream(filePath, System.IO.FileMode.Create));
         }
 
         [TestMethod]
         public void ShiftSrt()
         {
-            const string filePath = @"C:\Users\Adrian\Downloads\jack\CD5\S03E07 Jack and the Creature.srt";
+            const string filePath = @"C:\Users\Adrian\Downloads\Rick and Morty S01E04  M. Night Shaym-Aliens! (Uncensored) (1920x1080) [Phr0stY].srt";
             var srtItems = SrtHandler.ReadSrt(new System.IO.FileStream(filePath, System.IO.FileMode.Open));
-            SrtHandler.ShiftSrt(srtItems, -79500);
+            SrtHandler.ShiftSrt(srtItems, 1000);
             SrtHandler.WriteSrt(srtItems, new System.IO.FileStream(filePath, System.IO.FileMode.Create));
         }
 
         [TestMethod]
         public void ShiftSrtFrom()
         {
-            ushort season = 4;
-            ushort episode = 22;
-            uint seconds = 77;
+            uint seconds = 75*60+45;
+            int shift = -1800;
 
-            var srtItems = SrtHandler.ReadSrt(new System.IO.FileStream(string.Format(@"Z:\Shared\Videos\Star Trek\Enterprise\S{0:D2}\S{0:D2}E{1:D2}.srt.org", season, episode), System.IO.FileMode.Open));
-            SrtHandler.ShiftSrtAfterFrom(srtItems, seconds * 1000, -79500);
-            SrtHandler.WriteSrt(srtItems, new System.IO.FileStream(string.Format(@"Z:\Shared\Videos\Star Trek\Enterprise\S{0:D2}\S{0:D2}E{1:D2}.srt", season, episode), System.IO.FileMode.Create));
+            var srtItems = SrtHandler.ReadSrt(new System.IO.FileStream(@"C:\Users\Adrian\Downloads\Expanse\S01E09E10.srt", System.IO.FileMode.Open));
+            SrtHandler.ShiftSrtAfterFrom(srtItems, seconds * 1000, shift);
+            SrtHandler.WriteSrt(srtItems, new System.IO.FileStream(@"C:\Users\Adrian\Downloads\Expanse\The.Expanse.S01E09E10.Anubis-Leviathan.erwacht.German.Dubbed.DD51.DL.2160p.AmazonUHD.x264-NIMA4K.srt", System.IO.FileMode.Create));
         }
 
         [TestMethod]
@@ -107,6 +106,16 @@ namespace SrtTimeShift
             });
 
             SrtHandler.WriteSrt(srtItems, new System.IO.FileStream(filePath, System.IO.FileMode.Create));
+        }
+
+        [TestMethod]
+        public void DateDifference()
+        {
+            var dateFrom = System.DateTime.ParseExact("01:09:18.76", "hh:mm:ss.ff", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+            var dateTo = System.DateTime.ParseExact("01:31:31.76", "hh:mm:ss.ff", System.Globalization.DateTimeFormatInfo.InvariantInfo);
+
+            var diff = dateTo - dateFrom;
+            var duration = $"{diff.Hours:D2}:{diff.Minutes:D2}:{diff.Seconds:D2}.{diff.Milliseconds:D2}";
         }
     }
 }
