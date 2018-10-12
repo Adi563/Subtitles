@@ -33,8 +33,19 @@ namespace Subtitles.Gui
             foreach (var srtItem in srtItems)
             {
                 var listViewItem = new ListViewItem(new string[] { srtItem.Number.ToString(), srtItem.From.ToString(), srtItem.To.ToString(), srtItem.Text });
+                listViewItem.Tag = srtItem;
                 listViewSrtItems.Items.Add(listViewItem);
             }
+        }
+
+        private void listViewSrtItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewSrtItems.SelectedItems.Count < 1) { return; }
+
+            numericUpDownNumber.Value = ((SrtItem)listViewSrtItems.SelectedItems[0].Tag).Number;
+            textBoxFrom.Text = ((SrtItem)listViewSrtItems.SelectedItems[0].Tag).From.ToString();
+            textBoxTo.Text = ((SrtItem)listViewSrtItems.SelectedItems[0].Tag).To.ToString();
+            textBoxText.Text = ((SrtItem)listViewSrtItems.SelectedItems[0].Tag).Text.ToString();
         }
     }
 }
