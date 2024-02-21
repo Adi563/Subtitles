@@ -67,6 +67,7 @@ namespace Subtitles
             {
                 var srtItemList = new System.Collections.Generic.List<SrtItem>();
 
+                string line = "";
                 State state = State.Number;
                 uint number = 0;
                 TimeSpan from = TimeSpan.MinValue;
@@ -75,7 +76,14 @@ namespace Subtitles
 
                 while (!streamReader.EndOfStream)
                 {
-                    string line = streamReader.ReadLine();
+                    String currentLine = streamReader.ReadLine();
+
+                    //Prevent empty entries on multiple empty lines
+                    if (string.IsNullOrEmpty(line) && string.IsNullOrEmpty(currentLine))
+                    {
+                        continue;
+                    }
+                    else { line = currentLine; }
 
                     if (string.IsNullOrEmpty(line))
                     {
@@ -101,6 +109,12 @@ namespace Subtitles
                             text += string.Format("{0}\r\n", line);
                             break;
                     }
+                }
+
+                // In case no empty last line
+                if (state == State.Text)
+                {
+                    srtItemList.Add(new SrtItem(number, from, to, text));
                 }
 
                 return srtItemList;
