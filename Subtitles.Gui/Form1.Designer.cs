@@ -32,15 +32,16 @@
             this.textBoxFilePath = new System.Windows.Forms.TextBox();
             this.buttonOpenFile = new System.Windows.Forms.Button();
             this.listViewSrtItems = new System.Windows.Forms.ListView();
+            this.columnHeaderNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderFrom = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderTo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderText = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.numericUpDownNumber = new System.Windows.Forms.NumericUpDown();
             this.textBoxFrom = new System.Windows.Forms.TextBox();
             this.textBoxTo = new System.Windows.Forms.TextBox();
             this.textBoxText = new System.Windows.Forms.TextBox();
             this.groupBoxSrtItem = new System.Windows.Forms.GroupBox();
+            this.buttonReload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumber)).BeginInit();
             this.groupBoxSrtItem.SuspendLayout();
             this.SuspendLayout();
@@ -63,9 +64,9 @@
             // 
             this.buttonOpenFile.Location = new System.Drawing.Point(453, 12);
             this.buttonOpenFile.Name = "buttonOpenFile";
-            this.buttonOpenFile.Size = new System.Drawing.Size(75, 23);
+            this.buttonOpenFile.Size = new System.Drawing.Size(34, 23);
             this.buttonOpenFile.TabIndex = 1;
-            this.buttonOpenFile.Text = "Open";
+            this.buttonOpenFile.Text = "...";
             this.buttonOpenFile.UseVisualStyleBackColor = true;
             this.buttonOpenFile.Click += new System.EventHandler(this.buttonOpenFile_Click);
             // 
@@ -81,6 +82,7 @@
             this.columnHeaderText});
             this.listViewSrtItems.FullRowSelect = true;
             this.listViewSrtItems.GridLines = true;
+            this.listViewSrtItems.HideSelection = false;
             this.listViewSrtItems.Location = new System.Drawing.Point(12, 40);
             this.listViewSrtItems.MultiSelect = false;
             this.listViewSrtItems.Name = "listViewSrtItems";
@@ -90,6 +92,11 @@
             this.listViewSrtItems.UseCompatibleStateImageBehavior = false;
             this.listViewSrtItems.View = System.Windows.Forms.View.Details;
             this.listViewSrtItems.SelectedIndexChanged += new System.EventHandler(this.listViewSrtItems_SelectedIndexChanged);
+            // 
+            // columnHeaderNumber
+            // 
+            this.columnHeaderNumber.Text = "#";
+            this.columnHeaderNumber.Width = 40;
             // 
             // columnHeaderFrom
             // 
@@ -105,11 +112,6 @@
             // 
             this.columnHeaderText.Text = "Text";
             this.columnHeaderText.Width = 500;
-            // 
-            // columnHeaderNumber
-            // 
-            this.columnHeaderNumber.Text = "#";
-            this.columnHeaderNumber.Width = 40;
             // 
             // numericUpDownNumber
             // 
@@ -163,6 +165,17 @@
             this.groupBoxSrtItem.TabStop = false;
             this.groupBoxSrtItem.Text = "Details";
             // 
+            // buttonReload
+            // 
+            this.buttonReload.Enabled = false;
+            this.buttonReload.Location = new System.Drawing.Point(493, 12);
+            this.buttonReload.Name = "buttonReload";
+            this.buttonReload.Size = new System.Drawing.Size(75, 23);
+            this.buttonReload.TabIndex = 1;
+            this.buttonReload.Text = "(Re) load";
+            this.buttonReload.UseVisualStyleBackColor = true;
+            this.buttonReload.Click += new System.EventHandler(this.buttonReload_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -170,6 +183,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.groupBoxSrtItem);
             this.Controls.Add(this.listViewSrtItems);
+            this.Controls.Add(this.buttonReload);
             this.Controls.Add(this.buttonOpenFile);
             this.Controls.Add(this.textBoxFilePath);
             this.Name = "Form1";
@@ -197,6 +211,7 @@
         private System.Windows.Forms.TextBox textBoxTo;
         private System.Windows.Forms.TextBox textBoxText;
         private System.Windows.Forms.GroupBox groupBoxSrtItem;
+        private System.Windows.Forms.Button buttonReload;
     }
 }
 

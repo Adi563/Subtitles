@@ -16,16 +16,9 @@ namespace Subtitles.Gui
             openFileDialogSrt.ShowDialog();
         }
 
-        private void openFileDialogSrt_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        private void buttonReload_Click(object sender, EventArgs e)
         {
-            textBoxFilePath.Text = openFileDialogSrt.FileName;
-        }
-
-        private void textBoxFilePath_TextChanged(object sender, EventArgs e)
-        {
-            var fileExists = System.IO.File.Exists(textBoxFilePath.Text);
-
-            if (!fileExists) { return; }
+            if (!System.IO.File.Exists(textBoxFilePath.Text)) { return; }
 
             var srtItems = SrtHandler.ReadSrt(System.IO.File.OpenRead(textBoxFilePath.Text));
 
@@ -36,6 +29,16 @@ namespace Subtitles.Gui
                 listViewItem.Tag = srtItem;
                 listViewSrtItems.Items.Add(listViewItem);
             }
+        }
+
+        private void openFileDialogSrt_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            textBoxFilePath.Text = openFileDialogSrt.FileName;
+        }
+
+        private void textBoxFilePath_TextChanged(object sender, EventArgs e)
+        {
+            buttonReload.Enabled = System.IO.File.Exists(textBoxFilePath.Text);
         }
 
         private void listViewSrtItems_SelectedIndexChanged(object sender, EventArgs e)
