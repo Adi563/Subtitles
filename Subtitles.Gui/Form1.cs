@@ -28,8 +28,8 @@ namespace Subtitles.Gui
                 listViewSrtItems.Items.Add(listViewItem);
             }
 
-            numericUpDownNumber.Minimum = srtModel.SrtItems.First().Number;
-            numericUpDownNumber.Maximum = srtModel.SrtItems.Last().Number;
+            numericUpDownNumber.Minimum = srtModel.SrtItems.Any() ? srtModel.SrtItems.First().Number : 0;
+            numericUpDownNumber.Maximum = srtModel.SrtItems.Any() ? srtModel.SrtItems.Last().Number : 0;
         }
 
 
