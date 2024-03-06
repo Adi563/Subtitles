@@ -43,13 +43,14 @@
             this.groupBoxSrtItem = new System.Windows.Forms.GroupBox();
             this.buttonReload = new System.Windows.Forms.Button();
             this.groupBoxOperations = new System.Windows.Forms.GroupBox();
-            this.dateTimePickerShiftDuration = new System.Windows.Forms.DateTimePicker();
-            this.buttonShiftBackwards = new System.Windows.Forms.Button();
-            this.buttonShiftForward = new System.Windows.Forms.Button();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.numericUpDownShiftDurationMilliseconds = new System.Windows.Forms.NumericUpDown();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.buttonShiftForward = new System.Windows.Forms.Button();
+            this.buttonShiftBackwards = new System.Windows.Forms.Button();
+            this.dateTimePickerShiftDuration = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumber)).BeginInit();
             this.groupBoxSrtItem.SuspendLayout();
             this.groupBoxOperations.SuspendLayout();
@@ -189,6 +190,7 @@
             // groupBoxOperations
             // 
             this.groupBoxOperations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxOperations.Controls.Add(this.buttonSave);
             this.groupBoxOperations.Controls.Add(this.numericUpDownShiftDurationMilliseconds);
             this.groupBoxOperations.Controls.Add(this.radioButton3);
             this.groupBoxOperations.Controls.Add(this.radioButton2);
@@ -203,55 +205,27 @@
             this.groupBoxOperations.TabStop = false;
             this.groupBoxOperations.Text = "Operations";
             // 
-            // dateTimePickerShiftDuration
+            // buttonSave
             // 
-            this.dateTimePickerShiftDuration.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePickerShiftDuration.Location = new System.Drawing.Point(6, 19);
-            this.dateTimePickerShiftDuration.Name = "dateTimePickerShiftDuration";
-            this.dateTimePickerShiftDuration.ShowUpDown = true;
-            this.dateTimePickerShiftDuration.Size = new System.Drawing.Size(73, 20);
-            this.dateTimePickerShiftDuration.TabIndex = 0;
-            this.dateTimePickerShiftDuration.Value = new System.DateTime(2024, 3, 5, 0, 0, 0, 0);
+            this.buttonSave.Location = new System.Drawing.Point(6, 143);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(47, 23);
+            this.buttonSave.TabIndex = 7;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
-            // buttonShiftBackwards
+            // numericUpDownShiftDurationMilliseconds
             // 
-            this.buttonShiftBackwards.Location = new System.Drawing.Point(6, 114);
-            this.buttonShiftBackwards.Name = "buttonShiftBackwards";
-            this.buttonShiftBackwards.Size = new System.Drawing.Size(29, 23);
-            this.buttonShiftBackwards.TabIndex = 1;
-            this.buttonShiftBackwards.Text = "<<";
-            this.buttonShiftBackwards.UseVisualStyleBackColor = true;
-            this.buttonShiftBackwards.Click += new System.EventHandler(this.buttonShiftBackwards_Click);
-            // 
-            // buttonShiftForward
-            // 
-            this.buttonShiftForward.Location = new System.Drawing.Point(41, 114);
-            this.buttonShiftForward.Name = "buttonShiftForward";
-            this.buttonShiftForward.Size = new System.Drawing.Size(27, 23);
-            this.buttonShiftForward.TabIndex = 2;
-            this.buttonShiftForward.Text = ">>";
-            this.buttonShiftForward.UseVisualStyleBackColor = true;
-            this.buttonShiftForward.Click += new System.EventHandler(this.buttonShiftForward_Click);
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 45);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(66, 17);
-            this.radioButton1.TabIndex = 3;
-            this.radioButton1.Text = "Previous";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 68);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(67, 17);
-            this.radioButton2.TabIndex = 4;
-            this.radioButton2.Text = "Selected";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.numericUpDownShiftDurationMilliseconds.Location = new System.Drawing.Point(85, 19);
+            this.numericUpDownShiftDurationMilliseconds.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.numericUpDownShiftDurationMilliseconds.Name = "numericUpDownShiftDurationMilliseconds";
+            this.numericUpDownShiftDurationMilliseconds.Size = new System.Drawing.Size(41, 20);
+            this.numericUpDownShiftDurationMilliseconds.TabIndex = 6;
             // 
             // radioButton3
             // 
@@ -265,17 +239,57 @@
             this.radioButton3.Text = "After";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
-            // numericUpDownShiftDurationMilliseconds
+            // radioButton2
             // 
-            this.numericUpDownShiftDurationMilliseconds.Location = new System.Drawing.Point(85, 19);
-            this.numericUpDownShiftDurationMilliseconds.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.numericUpDownShiftDurationMilliseconds.Name = "numericUpDownShiftDurationMilliseconds";
-            this.numericUpDownShiftDurationMilliseconds.Size = new System.Drawing.Size(41, 20);
-            this.numericUpDownShiftDurationMilliseconds.TabIndex = 6;
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Enabled = false;
+            this.radioButton2.Location = new System.Drawing.Point(6, 68);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(67, 17);
+            this.radioButton2.TabIndex = 4;
+            this.radioButton2.Text = "Selected";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Enabled = false;
+            this.radioButton1.Location = new System.Drawing.Point(6, 45);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(66, 17);
+            this.radioButton1.TabIndex = 3;
+            this.radioButton1.Text = "Previous";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // buttonShiftForward
+            // 
+            this.buttonShiftForward.Location = new System.Drawing.Point(41, 114);
+            this.buttonShiftForward.Name = "buttonShiftForward";
+            this.buttonShiftForward.Size = new System.Drawing.Size(27, 23);
+            this.buttonShiftForward.TabIndex = 2;
+            this.buttonShiftForward.Text = ">>";
+            this.buttonShiftForward.UseVisualStyleBackColor = true;
+            this.buttonShiftForward.Click += new System.EventHandler(this.buttonShiftForward_Click);
+            // 
+            // buttonShiftBackwards
+            // 
+            this.buttonShiftBackwards.Location = new System.Drawing.Point(6, 114);
+            this.buttonShiftBackwards.Name = "buttonShiftBackwards";
+            this.buttonShiftBackwards.Size = new System.Drawing.Size(29, 23);
+            this.buttonShiftBackwards.TabIndex = 1;
+            this.buttonShiftBackwards.Text = "<<";
+            this.buttonShiftBackwards.UseVisualStyleBackColor = true;
+            this.buttonShiftBackwards.Click += new System.EventHandler(this.buttonShiftBackwards_Click);
+            // 
+            // dateTimePickerShiftDuration
+            // 
+            this.dateTimePickerShiftDuration.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePickerShiftDuration.Location = new System.Drawing.Point(6, 19);
+            this.dateTimePickerShiftDuration.Name = "dateTimePickerShiftDuration";
+            this.dateTimePickerShiftDuration.ShowUpDown = true;
+            this.dateTimePickerShiftDuration.Size = new System.Drawing.Size(73, 20);
+            this.dateTimePickerShiftDuration.TabIndex = 0;
+            this.dateTimePickerShiftDuration.Value = new System.DateTime(2024, 3, 5, 0, 0, 0, 0);
             // 
             // Form1
             // 
@@ -325,6 +339,7 @@
         private System.Windows.Forms.Button buttonShiftBackwards;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.NumericUpDown numericUpDownShiftDurationMilliseconds;
+        private System.Windows.Forms.Button buttonSave;
     }
 }
 

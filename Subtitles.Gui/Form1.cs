@@ -77,6 +77,8 @@ namespace Subtitles.Gui
 
         private void ShiftSrtItems(int multiplier)
         {
+            if (listViewSrtItems.SelectedItems.Count < 1) { return; }
+
             // Get number of selected SrtItem
             uint number = ((SrtItem)listViewSrtItems.SelectedItems[0].Tag).Number;
 
@@ -86,6 +88,11 @@ namespace Subtitles.Gui
 
 
             this.srtModel.ShiftSrtItems(number, multiplier * duration);
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            this.srtModel.Save(System.IO.File.OpenWrite(textBoxFilePath.Text));
         }
     }
 }

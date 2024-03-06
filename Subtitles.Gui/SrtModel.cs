@@ -32,5 +32,10 @@ namespace Subtitles.Gui
             SrtHandler.ShiftSrtAfterNumber(srtItems, number, duration);
             SrtItemsShifted.Invoke(this, EventArgs.Empty);   
         }
+
+        public void Save(System.IO.Stream stream)
+        {
+            SrtHandler.WriteSrt(this.srtItems, stream);
+        }
     }
 }
