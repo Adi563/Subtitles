@@ -14,9 +14,10 @@ namespace Subtitles.Gui
             InitializeComponent();
 
             srtModel.SrtItemsLoaded += SrtModel_SrtItemsLoaded;
-            srtModel.SrtItemsShifted += SrtModel_SrtItemsLoaded;
+            srtModel.SrtItemsShifted += SrtModel_SrtItemsShifted;
             srtModel.NumberSelectedChanged += SrtModel_NumberSelectedChanged;
         }
+
 
         private void SrtModel_SrtItemsLoaded(object sender, EventArgs e)
         {
@@ -30,6 +31,15 @@ namespace Subtitles.Gui
 
             numericUpDownNumber.Minimum = srtModel.SrtItems.Any() ? srtModel.SrtItems.First().Number : 0;
             numericUpDownNumber.Maximum = srtModel.SrtItems.Any() ? srtModel.SrtItems.Last().Number : 0;
+        }
+
+        private void SrtModel_SrtItemsShifted(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listViewSrtItems.Items)
+            {
+                item.SubItems[1].Text = ((SrtItem)item.Tag).From.ToString();
+                item.SubItems[2].Text = ((SrtItem)item.Tag).To.ToString();
+            }
         }
 
 
