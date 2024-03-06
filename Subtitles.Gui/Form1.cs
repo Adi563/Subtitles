@@ -66,19 +66,19 @@ namespace Subtitles.Gui
 
         private void textBoxFilePath_TextChanged(object sender, EventArgs e)
         {
-            buttonReload.Enabled = System.IO.File.Exists(textBoxFilePath.Text);
+            buttonReload.Enabled = buttonSave.Enabled = System.IO.File.Exists(textBoxFilePath.Text);
         }
 
         private void listViewSrtItems_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listViewSrtItems.SelectedItems.Count < 1) { return; }
 
-            this.srtModel.NumberSelected = ((SrtItem)listViewSrtItems.SelectedItems[0].Tag).Number;
+            this.srtModel.NumberSelected = ((SrtItem) listViewSrtItems.SelectedItems[0].Tag).Number;
         }
 
         private void numericUpDownNumber_ValueChanged(object sender, EventArgs e)
         {
-            this.srtModel.NumberSelected = (uint)numericUpDownNumber.Value;
+            this.srtModel.NumberSelected = (uint) numericUpDownNumber.Value;
         }
 
         private void SrtModel_NumberSelectedChanged(object sender, uint numberSelected)
@@ -137,6 +137,8 @@ namespace Subtitles.Gui
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            if (!System.IO.File.Exists(textBoxFilePath.Text)) { return; }
+
             this.srtModel.Save(System.IO.File.OpenWrite(textBoxFilePath.Text));
         }
     }

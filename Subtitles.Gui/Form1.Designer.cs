@@ -141,6 +141,7 @@
             // 
             this.textBoxFrom.Location = new System.Drawing.Point(132, 19);
             this.textBoxFrom.Name = "textBoxFrom";
+            this.textBoxFrom.ReadOnly = true;
             this.textBoxFrom.Size = new System.Drawing.Size(100, 20);
             this.textBoxFrom.TabIndex = 4;
             // 
@@ -148,6 +149,7 @@
             // 
             this.textBoxTo.Location = new System.Drawing.Point(238, 19);
             this.textBoxTo.Name = "textBoxTo";
+            this.textBoxTo.ReadOnly = true;
             this.textBoxTo.Size = new System.Drawing.Size(100, 20);
             this.textBoxTo.TabIndex = 4;
             // 
@@ -182,9 +184,9 @@
             this.buttonReload.Enabled = false;
             this.buttonReload.Location = new System.Drawing.Point(493, 12);
             this.buttonReload.Name = "buttonReload";
-            this.buttonReload.Size = new System.Drawing.Size(75, 23);
+            this.buttonReload.Size = new System.Drawing.Size(53, 23);
             this.buttonReload.TabIndex = 1;
-            this.buttonReload.Text = "(Re) load";
+            this.buttonReload.Text = "Reload";
             this.buttonReload.UseVisualStyleBackColor = true;
             this.buttonReload.Click += new System.EventHandler(this.buttonReload_Click);
             // 
@@ -208,6 +210,7 @@
             // 
             // buttonSave
             // 
+            this.buttonSave.Enabled = false;
             this.buttonSave.Location = new System.Drawing.Point(6, 143);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(47, 23);
@@ -234,10 +237,10 @@
             this.radioButton3.Checked = true;
             this.radioButton3.Location = new System.Drawing.Point(6, 91);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(47, 17);
+            this.radioButton3.Size = new System.Drawing.Size(101, 17);
             this.radioButton3.TabIndex = 5;
             this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "After";
+            this.radioButton3.Text = "Selected && After";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // radioButton2
@@ -257,9 +260,9 @@
             this.radioButton1.Enabled = false;
             this.radioButton1.Location = new System.Drawing.Point(6, 45);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(66, 17);
+            this.radioButton1.Size = new System.Drawing.Size(120, 17);
             this.radioButton1.TabIndex = 3;
-            this.radioButton1.Text = "Previous";
+            this.radioButton1.Text = "Selected && Previous";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // buttonShiftForward
