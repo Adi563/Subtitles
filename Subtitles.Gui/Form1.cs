@@ -15,6 +15,7 @@ namespace Subtitles.Gui
 
             srtModel.SrtItemsLoaded += SrtModel_SrtItemsLoaded;
             srtModel.SrtItemsShifted += SrtModel_SrtItemsLoaded;
+            srtModel.NumberSelectedChanged += SrtModel_NumberSelectedChanged;
         }
 
         private void SrtModel_SrtItemsLoaded(object sender, EventArgs e)
@@ -26,6 +27,9 @@ namespace Subtitles.Gui
                 listViewItem.Tag = srtItem;
                 listViewSrtItems.Items.Add(listViewItem);
             }
+
+            numericUpDownNumber.Minimum = srtModel.SrtItems.First().Number;
+            numericUpDownNumber.Maximum = srtModel.SrtItems.Last().Number;
         }
 
 
@@ -59,10 +63,41 @@ namespace Subtitles.Gui
         {
             if (listViewSrtItems.SelectedItems.Count < 1) { return; }
 
-            numericUpDownNumber.Value = ((SrtItem)listViewSrtItems.SelectedItems[0].Tag).Number;
-            textBoxFrom.Text = ((SrtItem)listViewSrtItems.SelectedItems[0].Tag).From.ToString();
-            textBoxTo.Text = ((SrtItem)listViewSrtItems.SelectedItems[0].Tag).To.ToString();
-            textBoxText.Text = ((SrtItem)listViewSrtItems.SelectedItems[0].Tag).Text.ToString();
+            this.srtModel.NumberSelected = ((SrtItem)listViewSrtItems.SelectedItems[0].Tag).Number;
+        }
+
+        private void numericUpDownNumber_ValueChanged(object sender, EventArgs e)
+        {
+            this.srtModel.NumberSelected = (uint)numericUpDownNumber.Value;
+        }
+
+        private void SrtModel_NumberSelectedChanged(object sender, uint numberSelected)
+        {
+            var srtItemSelected = this.srtModel.SrtItems.FirstOrDefault(a => a.Number == numberSelected);
+
+            if (srtItemSelected == null) { return; }
+
+
+            int index = 0;
+            foreach (ListViewItem selectedItem in listViewSrtItems.Items)
+            {
+                if (selectedItem.Tag == srtItemSelected)
+                {
+                    index = selectedItem.Index;
+                    break;
+                }
+            }
+
+
+            if (!listViewSrtItems.SelectedIndices.Contains(index))
+            {
+                listViewSrtItems.SelectedIndices.Add(index);
+            }
+
+            numericUpDownNumber.Value = srtItemSelected.Number;
+            textBoxFrom.Text = srtItemSelected.From.ToString();
+            textBoxTo.Text = srtItemSelected.To.ToString();
+            textBoxText.Text = srtItemSelected.Text.ToString();
         }
 
         private void buttonShiftBackwards_Click(object sender, EventArgs e)
