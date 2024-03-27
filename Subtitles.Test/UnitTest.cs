@@ -38,14 +38,51 @@ namespace Subtitles.Test
         }
 
         [TestMethod]
-        public void ShiftSrtNumber()
+        public void ShiftSrtBeforeNumber()
         {
-            const string filePath = @"C:\Users\Adrian\Downloads\jack\CD5\S03E07 Jack and the Creature.srt";
-            const uint number = 919;
+            var srtItems = new System.Collections.Generic.List<SrtItem>
+            {
+                new SrtItem(1, new TimeSpan(0, 0, 0, 1, 0), new TimeSpan(0, 0, 0, 2, 0), ""),
+                new SrtItem(2, new TimeSpan(0, 0, 0, 3, 0), new TimeSpan(0, 0, 0, 4, 0), ""),
+                new SrtItem(3, new TimeSpan(0, 0, 0, 5, 0), new TimeSpan(0, 0, 0, 6, 0), ""),
+            };
 
-            var srtItems = SrtHandler.ReadSrt(new System.IO.FileStream(filePath, System.IO.FileMode.Open));
-            SrtHandler.ShiftSrtAfterNumber(srtItems, number, 0 * 60 * 1000 + 1 * 1000);
-            SrtHandler.WriteSrt(srtItems, new System.IO.FileStream(filePath, System.IO.FileMode.Create));
+            SrtHandler.ShiftSrtBeforeNumber(srtItems, 2, 1000);
+
+
+            Assert.AreEqual(srtItems[0].From, new TimeSpan(0, 0, 0, 2, 0));
+            Assert.AreEqual(srtItems[0].To, new TimeSpan(0, 0, 0, 3, 0));
+
+
+            Assert.AreEqual(srtItems[1].From, new TimeSpan(0, 0, 0, 4, 0));
+            Assert.AreEqual(srtItems[1].To, new TimeSpan(0, 0, 0, 5, 0));
+
+            Assert.AreEqual(srtItems[2].From, new TimeSpan(0, 0, 0, 5, 0));
+            Assert.AreEqual(srtItems[2].To, new TimeSpan(0, 0, 0, 6, 0));
+        }
+
+        [TestMethod]
+        public void ShiftSrtAfterNumber()
+        {
+            var srtItems = new System.Collections.Generic.List<SrtItem>
+            {
+                new SrtItem(1, new TimeSpan(0, 0, 0, 1, 0), new TimeSpan(0, 0, 0, 2, 0), ""),
+                new SrtItem(2, new TimeSpan(0, 0, 0, 3, 0), new TimeSpan(0, 0, 0, 4, 0), ""),
+                new SrtItem(3, new TimeSpan(0, 0, 0, 5, 0), new TimeSpan(0, 0, 0, 6, 0), ""),
+            };
+
+            SrtHandler.ShiftSrtAfterNumber(srtItems, 2, 1000);
+
+
+            Assert.AreEqual(srtItems[0].From, new TimeSpan(0, 0, 0, 1, 0));
+            Assert.AreEqual(srtItems[0].To, new TimeSpan(0, 0, 0, 2, 0));
+
+
+            Assert.AreEqual(srtItems[1].From, new TimeSpan(0, 0, 0, 4, 0));
+            Assert.AreEqual(srtItems[1].To, new TimeSpan(0, 0, 0, 5, 0));
+
+            Assert.AreEqual(srtItems[2].From, new TimeSpan(0, 0, 0, 6, 0));
+            Assert.AreEqual(srtItems[2].To, new TimeSpan(0, 0, 0, 7, 0));
         }
 
         [TestMethod]

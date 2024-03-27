@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Subtitles
 {
@@ -36,14 +37,15 @@ namespace Subtitles
             }
         }
 
+        public static void ShiftSrtBeforeNumber(System.Collections.Generic.IEnumerable<SrtItem> srtItems, uint number, int milliseconds)
+        {
+            ShiftSrt(srtItems.Where(i => i.Number <= number), milliseconds);
+        }
+
 
         public static void ShiftSrtAfterNumber(System.Collections.Generic.IEnumerable<SrtItem> srtItems, uint number, int milliseconds)
         {
-            foreach (var srtItem in srtItems)
-            {
-                if (srtItem.Number < number) { continue; }
-                srtItem.Shift(milliseconds);
-            }
+            ShiftSrt(srtItems.Where(i => i.Number >= number), milliseconds);
         }
 
 
