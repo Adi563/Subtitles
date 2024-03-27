@@ -18,6 +18,12 @@ namespace Subtitles.Gui
             this.srtItems.Add(srtItem);
         }
 
+        public void ClearSrtItems()
+        {
+            this.srtItems.Clear();
+            SrtItemsLoaded?.Invoke(this, EventArgs.Empty);
+        }
+
         public void AddSrtItems(IEnumerable<SrtItem> srtItems)
         {
             this.srtItems.AddRange(srtItems);
