@@ -125,14 +125,27 @@ namespace Subtitles.Gui
             if (listViewSrtItems.SelectedItems.Count < 1) { return; }
 
             // Get number of selected SrtItem
-            uint number = ((SrtItem)listViewSrtItems.SelectedItems[0].Tag).Number;
+            uint number = ((SrtItem) listViewSrtItems.SelectedItems[0].Tag).Number;
 
 
             // Get duration
-            int duration = (int)dateTimePickerShiftDuration.Value.TimeOfDay.TotalMilliseconds + (int) numericUpDownShiftDurationMilliseconds.Value;
+            int duration = (int) dateTimePickerShiftDuration.Value.TimeOfDay.TotalMilliseconds + (int) numericUpDownShiftDurationMilliseconds.Value;
 
 
-            this.srtModel.ShiftSrtItems(number, multiplier * duration);
+            if (radioButton1.Checked)
+            {
+                this.srtModel.ShiftSrtItems(number, multiplier * duration, true);
+            }
+
+            if (radioButton2.Checked)
+            {
+                this.srtModel.ShiftSrtItem(number, multiplier * duration);
+            }
+
+            if (radioButton3.Checked)
+            {
+                this.srtModel.ShiftSrtItems(number, multiplier * duration, false);
+            }
         }
 
         private void buttonSave_Click(object sender, EventArgs e)

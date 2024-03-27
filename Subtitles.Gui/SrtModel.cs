@@ -40,9 +40,24 @@ namespace Subtitles.Gui
             }
         }
 
-        public void ShiftSrtItems(uint number, int duration)
+        public void ShiftSrtItem(uint number, int duration)
         {
-            SrtHandler.ShiftSrtAfterNumber(srtItems, number, duration);
+            SrtHandler.ShiftSrtBeforeNumber(srtItems.Where(i => i.Number == number), number, duration);
+
+            SrtItemsShifted?.Invoke(this, EventArgs.Empty);
+        }
+
+        public void ShiftSrtItems(uint number, int duration, bool before)
+        {
+            if (before)
+            {
+                SrtHandler.ShiftSrtBeforeNumber(srtItems, number, duration);
+            }
+            else
+            {
+                SrtHandler.ShiftSrtAfterNumber(srtItems, number, duration);
+            }
+
             SrtItemsShifted?.Invoke(this, EventArgs.Empty);   
         }
 
