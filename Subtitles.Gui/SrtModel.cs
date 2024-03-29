@@ -46,9 +46,10 @@ namespace Subtitles.Gui
             }
         }
 
-        public void ShiftSrtItem(uint number, int duration)
+        public void ShiftSrtItems(System.Collections.Generic.IEnumerable<uint> numbers, int duration)
         {
-            SrtHandler.ShiftSrtBeforeNumber(srtItems.Where(i => i.Number == number), number, duration);
+            var srtItemsToShift = srtItems.Where(i => numbers.Contains(i.Number));
+            SrtHandler.ShiftSrt(srtItemsToShift, duration);
 
             SrtItemsShifted?.Invoke(this, EventArgs.Empty);
         }

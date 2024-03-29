@@ -95,7 +95,6 @@
             this.listViewSrtItems.GridLines = true;
             this.listViewSrtItems.HideSelection = false;
             this.listViewSrtItems.Location = new System.Drawing.Point(12, 40);
-            this.listViewSrtItems.MultiSelect = false;
             this.listViewSrtItems.Name = "listViewSrtItems";
             this.listViewSrtItems.ShowGroups = false;
             this.listViewSrtItems.Size = new System.Drawing.Size(730, 244);

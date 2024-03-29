@@ -140,7 +140,8 @@ namespace Subtitles.Gui
 
             if (radioButton2.Checked)
             {
-                this.srtModel.ShiftSrtItem(number, multiplier * duration);
+                var numbersSelected = listViewSrtItems.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.Tag).Cast<SrtItem>().Select(i => i.Number);
+                this.srtModel.ShiftSrtItems(numbersSelected, multiplier * duration);
             }
 
             if (radioButton3.Checked)
