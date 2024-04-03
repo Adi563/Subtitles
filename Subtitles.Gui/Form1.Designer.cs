@@ -43,6 +43,7 @@
             this.groupBoxSrtItem = new System.Windows.Forms.GroupBox();
             this.buttonReload = new System.Windows.Forms.Button();
             this.groupBoxOperations = new System.Windows.Forms.GroupBox();
+            this.buttonUndo = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.numericUpDownShiftDurationMilliseconds = new System.Windows.Forms.NumericUpDown();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
@@ -51,6 +52,7 @@
             this.buttonShiftForward = new System.Windows.Forms.Button();
             this.buttonShiftBackwards = new System.Windows.Forms.Button();
             this.dateTimePickerShiftDuration = new System.Windows.Forms.DateTimePicker();
+            this.buttonRedo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumber)).BeginInit();
             this.groupBoxSrtItem.SuspendLayout();
             this.groupBoxOperations.SuspendLayout();
@@ -192,6 +194,8 @@
             // groupBoxOperations
             // 
             this.groupBoxOperations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxOperations.Controls.Add(this.buttonRedo);
+            this.groupBoxOperations.Controls.Add(this.buttonUndo);
             this.groupBoxOperations.Controls.Add(this.buttonSave);
             this.groupBoxOperations.Controls.Add(this.numericUpDownShiftDurationMilliseconds);
             this.groupBoxOperations.Controls.Add(this.radioButton3);
@@ -202,15 +206,25 @@
             this.groupBoxOperations.Controls.Add(this.dateTimePickerShiftDuration);
             this.groupBoxOperations.Location = new System.Drawing.Point(748, 40);
             this.groupBoxOperations.Name = "groupBoxOperations";
-            this.groupBoxOperations.Size = new System.Drawing.Size(177, 244);
+            this.groupBoxOperations.Size = new System.Drawing.Size(177, 203);
             this.groupBoxOperations.TabIndex = 6;
             this.groupBoxOperations.TabStop = false;
             this.groupBoxOperations.Text = "Operations";
             // 
+            // buttonUndo
+            // 
+            this.buttonUndo.Location = new System.Drawing.Point(6, 143);
+            this.buttonUndo.Name = "buttonUndo";
+            this.buttonUndo.Size = new System.Drawing.Size(47, 23);
+            this.buttonUndo.TabIndex = 8;
+            this.buttonUndo.Text = "Undo";
+            this.buttonUndo.UseVisualStyleBackColor = true;
+            this.buttonUndo.Click += new System.EventHandler(this.buttonUndo_Click);
+            // 
             // buttonSave
             // 
             this.buttonSave.Enabled = false;
-            this.buttonSave.Location = new System.Drawing.Point(6, 143);
+            this.buttonSave.Location = new System.Drawing.Point(6, 172);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(47, 23);
             this.buttonSave.TabIndex = 7;
@@ -292,6 +306,16 @@
             this.dateTimePickerShiftDuration.TabIndex = 0;
             this.dateTimePickerShiftDuration.Value = new System.DateTime(2024, 3, 5, 0, 0, 0, 0);
             // 
+            // buttonRedo
+            // 
+            this.buttonRedo.Location = new System.Drawing.Point(59, 143);
+            this.buttonRedo.Name = "buttonRedo";
+            this.buttonRedo.Size = new System.Drawing.Size(48, 23);
+            this.buttonRedo.TabIndex = 9;
+            this.buttonRedo.Text = "Redo";
+            this.buttonRedo.UseVisualStyleBackColor = true;
+            this.buttonRedo.Click += new System.EventHandler(this.buttonRedo_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -341,6 +365,8 @@
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.NumericUpDown numericUpDownShiftDurationMilliseconds;
         private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonUndo;
+        private System.Windows.Forms.Button buttonRedo;
     }
 }
 

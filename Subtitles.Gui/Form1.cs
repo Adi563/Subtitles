@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Subtitles.Gui.Command;
+using System;
 using System.Collections;
 using System.Linq;
 using System.Windows.Forms;
@@ -8,6 +9,7 @@ namespace Subtitles.Gui
     public partial class Form1 : Form
     {
         private SrtModel srtModel = new SrtModel();
+        private CommandModel commandModel = new CommandModel();
 
         public Form1()
         {
@@ -135,18 +137,25 @@ namespace Subtitles.Gui
 
             if (radioButton1.Checked)
             {
-                this.srtModel.ShiftSrtItems(number, multiplier * duration, true);
+                //this.srtModel.ShiftSrtItems(number, multiplier * duration, true);
+                this.commandModel.AddCommmand(new CommandShiftSrtItems(this.srtModel, number, duration, true));
+                this.commandModel.Redo();
             }
 
             if (radioButton2.Checked)
             {
                 var numbersSelected = listViewSrtItems.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.Tag).Cast<SrtItem>().Select(i => i.Number);
-                this.srtModel.ShiftSrtItems(numbersSelected, multiplier * duration);
+                //this.srtModel.ShiftSrtItems(numbersSelected, multiplier * duration);
+
+                this.commandModel.AddCommmand(new CommandShiftSrtItemsSelected(this.srtModel, numbersSelected, duration));
+                this.commandModel.Redo();
             }
 
             if (radioButton3.Checked)
             {
-                this.srtModel.ShiftSrtItems(number, multiplier * duration, false);
+                //this.srtModel.ShiftSrtItems(number, multiplier * duration, false);
+                this.commandModel.AddCommmand(new CommandShiftSrtItems(this.srtModel, number, duration, false));
+                this.commandModel.Redo();
             }
         }
 
@@ -155,6 +164,16 @@ namespace Subtitles.Gui
             if (!System.IO.File.Exists(textBoxFilePath.Text)) { return; }
 
             this.srtModel.Save(System.IO.File.OpenWrite(textBoxFilePath.Text));
+        }
+
+        private void buttonUndo_Click(object sender, EventArgs e)
+        {
+            this.commandModel.Undo();
+        }
+
+        private void buttonRedo_Click(object sender, EventArgs e)
+        {
+            this.commandModel.Redo();
         }
     }
 }
