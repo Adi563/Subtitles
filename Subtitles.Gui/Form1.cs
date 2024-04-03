@@ -137,7 +137,7 @@ namespace Subtitles.Gui
 
             if (radioButton1.Checked)
             {
-                this.commandModel.AddCommmand(new CommandShiftSrtItems(this.srtModel, number, duration, true));
+                this.commandModel.AddCommmand(new CommandShiftSrtItems(this.srtModel, number, multiplier * duration, true));
                 this.commandModel.Redo();
             }
 
@@ -145,13 +145,13 @@ namespace Subtitles.Gui
             {
                 var numbersSelected = listViewSrtItems.SelectedItems.Cast<ListViewItem>().Select(lvi => lvi.Tag).Cast<SrtItem>().Select(i => i.Number);
 
-                this.commandModel.AddCommmand(new CommandShiftSrtItemsSelected(this.srtModel, numbersSelected, duration));
+                this.commandModel.AddCommmand(new CommandShiftSrtItemsSelected(this.srtModel, numbersSelected, multiplier * duration));
                 this.commandModel.Redo();
             }
 
             if (radioButton3.Checked)
             {
-                this.commandModel.AddCommmand(new CommandShiftSrtItems(this.srtModel, number, duration, false));
+                this.commandModel.AddCommmand(new CommandShiftSrtItems(this.srtModel, number, multiplier * duration, false));
                 this.commandModel.Redo();
             }
         }
