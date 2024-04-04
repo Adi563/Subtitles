@@ -57,6 +57,7 @@ namespace Subtitles.Gui
             var srtItems = SrtHandler.ReadSrt(System.IO.File.OpenRead(textBoxFilePath.Text));
 
             this.srtModel.ClearSrtItems();
+            this.commandModel.Clear();
             this.srtModel.AddSrtItems(srtItems);
         }
 

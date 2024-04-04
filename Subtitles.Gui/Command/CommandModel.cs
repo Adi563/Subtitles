@@ -25,12 +25,18 @@ namespace Subtitles.Gui.Command
 
             lastCommand.Undo();
 
-            lastCommand = lastCommand == commands.First() ? null : commands.ElementAt(commands.IndexOf(lastCommand) - 1);
+            lastCommand = !commands.Any() || lastCommand == commands.First() ? null : commands.ElementAt(commands.IndexOf(lastCommand) - 1);
         }
 
         public void AddCommmand(ICommand command)
         {
             this.commands.Add(command);
+        }
+
+        public void Clear()
+        {
+            this.commands.Clear();
+            this.lastCommand = null;
         }
     }
 }
