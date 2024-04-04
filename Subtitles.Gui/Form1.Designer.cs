@@ -43,6 +43,7 @@
             this.groupBoxSrtItem = new System.Windows.Forms.GroupBox();
             this.buttonReload = new System.Windows.Forms.Button();
             this.groupBoxOperations = new System.Windows.Forms.GroupBox();
+            this.buttonRedo = new System.Windows.Forms.Button();
             this.buttonUndo = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.numericUpDownShiftDurationMilliseconds = new System.Windows.Forms.NumericUpDown();
@@ -52,7 +53,6 @@
             this.buttonShiftForward = new System.Windows.Forms.Button();
             this.buttonShiftBackwards = new System.Windows.Forms.Button();
             this.dateTimePickerShiftDuration = new System.Windows.Forms.DateTimePicker();
-            this.buttonRedo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumber)).BeginInit();
             this.groupBoxSrtItem.SuspendLayout();
             this.groupBoxOperations.SuspendLayout();
@@ -67,11 +67,14 @@
             // 
             // textBoxFilePath
             // 
+            this.textBoxFilePath.AllowDrop = true;
             this.textBoxFilePath.Location = new System.Drawing.Point(12, 14);
             this.textBoxFilePath.Name = "textBoxFilePath";
             this.textBoxFilePath.Size = new System.Drawing.Size(435, 20);
             this.textBoxFilePath.TabIndex = 0;
             this.textBoxFilePath.TextChanged += new System.EventHandler(this.textBoxFilePath_TextChanged);
+            this.textBoxFilePath.DragDrop += new System.Windows.Forms.DragEventHandler(this.control_DragDrop);
+            this.textBoxFilePath.DragEnter += new System.Windows.Forms.DragEventHandler(this.control_DragEnter);
             // 
             // buttonOpenFile
             // 
@@ -85,6 +88,7 @@
             // 
             // listViewSrtItems
             // 
+            this.listViewSrtItems.AllowDrop = true;
             this.listViewSrtItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -104,6 +108,8 @@
             this.listViewSrtItems.UseCompatibleStateImageBehavior = false;
             this.listViewSrtItems.View = System.Windows.Forms.View.Details;
             this.listViewSrtItems.SelectedIndexChanged += new System.EventHandler(this.listViewSrtItems_SelectedIndexChanged);
+            this.listViewSrtItems.DragDrop += new System.Windows.Forms.DragEventHandler(this.control_DragDrop);
+            this.listViewSrtItems.DragEnter += new System.Windows.Forms.DragEventHandler(this.control_DragEnter);
             // 
             // columnHeaderNumber
             // 
@@ -211,6 +217,16 @@
             this.groupBoxOperations.TabStop = false;
             this.groupBoxOperations.Text = "Operations";
             // 
+            // buttonRedo
+            // 
+            this.buttonRedo.Location = new System.Drawing.Point(59, 143);
+            this.buttonRedo.Name = "buttonRedo";
+            this.buttonRedo.Size = new System.Drawing.Size(48, 23);
+            this.buttonRedo.TabIndex = 9;
+            this.buttonRedo.Text = "Redo";
+            this.buttonRedo.UseVisualStyleBackColor = true;
+            this.buttonRedo.Click += new System.EventHandler(this.buttonRedo_Click);
+            // 
             // buttonUndo
             // 
             this.buttonUndo.Location = new System.Drawing.Point(6, 143);
@@ -305,16 +321,6 @@
             this.dateTimePickerShiftDuration.Size = new System.Drawing.Size(73, 20);
             this.dateTimePickerShiftDuration.TabIndex = 0;
             this.dateTimePickerShiftDuration.Value = new System.DateTime(2024, 3, 5, 0, 0, 0, 0);
-            // 
-            // buttonRedo
-            // 
-            this.buttonRedo.Location = new System.Drawing.Point(59, 143);
-            this.buttonRedo.Name = "buttonRedo";
-            this.buttonRedo.Size = new System.Drawing.Size(48, 23);
-            this.buttonRedo.TabIndex = 9;
-            this.buttonRedo.Text = "Redo";
-            this.buttonRedo.UseVisualStyleBackColor = true;
-            this.buttonRedo.Click += new System.EventHandler(this.buttonRedo_Click);
             // 
             // Form1
             // 

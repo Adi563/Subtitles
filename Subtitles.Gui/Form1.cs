@@ -172,5 +172,27 @@ namespace Subtitles.Gui
         {
             this.commandModel.Redo();
         }
+
+        private void control_DragEnter(object sender, DragEventArgs e)
+        {
+            if (!e.Data.GetDataPresent("FileNameW")
+                || !(e.Data.GetData("FileNameW") is string[])
+                || ((string[]) e.Data.GetData("FileNameW")).Length != 1
+                || !((string[]) e.Data.GetData("FileNameW"))[0].EndsWith(".srt"))
+            {
+                return;
+            }
+
+            e.Effect = DragDropEffects.Link;
+        }
+
+        private void control_DragDrop(object sender, DragEventArgs e)            
+        {
+            var filePath = ((string[]) e.Data.GetData("FileNameW"))[0];
+
+            textBoxFilePath.Text = filePath;
+
+            buttonReload_Click(sender, e);
+        }
     }
 }
